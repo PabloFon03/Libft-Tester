@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 // #include "libft.h"
 
 int main()
@@ -14,19 +15,25 @@ void print_separator()
 
 void    test_split()
 {
-    const char  *str[] = { "Hello World", "H elloWorld", "Hello    World", "Hello", " ", "", "      ", "       Hello      World       ", NULL };
+    const char *str[] = { "Hello World", "H elloWorld", "Hello    World", "Hello", " ", "", "      ", "       Hello      World       ", NULL };
     char split_char = ' ';
-    for (int i = 0; i < ; i++)
+    print_separator();
+    for (int i = 0; i < 8; i++)
     {
         printf("ft_split(\"%s\", '%c') -> ", str[i], split_char);
         char **result = split(str[i], split_char);
-        while (result)
+        if (!result)
+            printf("Nothing\n");
+        else
         {
-            printf("\"%s\"", result++);
-            if (result)
-                printf(", ");
-            else
-                printf("\n");
+            while (result)
+            {
+                printf("\"%s\"", result++);
+                printf(result ? ", " : " \n");
+            }
         }
+        printf("Memory Leaks: ");
+        system("leaks");
     }
+    print_separator();
 }
