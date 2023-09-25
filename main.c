@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "libft.h"
 
+int		run_makefile(void);
 void	test_atoi(void);
 void	test_substr(void);
 void	test_strjoin(void);
@@ -14,6 +15,8 @@ void	test_putnbr(void);
 int	main(void)
 {
 	printf("Libft Tester By JustAGreenToast\nGood Luck! :D\n\n");
+	if (!run_makefile())
+		return (1);
 	test_atoi();
 	test_substr();
 	test_strjoin();
@@ -23,6 +26,22 @@ int	main(void)
 	test_striteri();
 	test_strmapi();
 	test_putnbr();
+	return (0);
+}
+
+int	run_makefile(void)
+{
+	printf("Probando makefile... (make re)\n");
+	if (system("make re"))
+	{
+		printf("ERROR: Algo ha fallado con Makefile :(\n");
+		return (0);
+	}
+	else
+	{
+		printf("Makefile funciona! :D\n");
+		return (1);
+	}
 }
 
 void	print_separator(void)
